@@ -1,2 +1,2 @@
 # VI-Bin
-This is the repository to store the Temporary and other files.
+This is the repository to Store Temporary files and other .
