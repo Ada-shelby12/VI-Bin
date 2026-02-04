@@ -1,0 +1,170 @@
+
+   Software Testing  Assignment Questions.
+
+
+Explain the Drawbacks of BVA.
+Write the test case for the date ().
+ write a note on  robustness testing , worst case testing,  special value testing. 
+ write a performance test case for  Mobile Application . 
+ Explain   Random  Testing with ie.
+
+
+Answers from llms.
+
+1. Drawbacks of Boundary Value Analysis (BVA)
+
+Boundary Value Analysis focuses on testing values at the edges of input ranges. While useful, it has limitations:
+
+Only works well for numeric ranges
+BVA is not very effective for non-numeric inputs like strings, images, or complex data structures.
+
+Misses internal defects
+It tests boundary values but may ignore defects inside the valid range.
+
+Assumes single-variable faults
+BVA usually tests one variable at a time and may miss bugs caused by interactions between multiple inputs.
+
+Not suitable for complex logic
+Business rules or conditional logic cannot be fully tested using BVA alone.
+
+Limited coverage
+It does not guarantee complete test coverage, especially for combinations of inputs.
+
+
+
+2.Test Cases for Date (DD/MM/YYYY)
+
+Assumptions:
+
+Date format: DD/MM/YYYY
+
+Valid year range: 1900–2100
+
+Test Case	Input Date	Expected Result
+1	01/01/1900	Accepted
+2	31/12/2100	Accepted
+3	00/01/2024	Rejected
+4	32/01/2024	Rejected
+5	29/02/2024 (leap year)	Accepted
+6	29/02/2023 (non-leap year)	Rejected
+7	31/04/2024	Rejected
+8	15/13/2024	Rejected
+9	15/08/1899	Rejected
+10	15/08/2101	Rejected
+
+
+Flowchart for Date Validation Test Case (DD/MM/YYYY)
+        ┌───────────┐
+        │   Start   │
+        └─────┬─────┘
+              │
+        ┌─────▼─────┐
+        │ Enter Date│
+        │ DD/MM/YYYY│
+        └─────┬─────┘
+              │
+      ┌───────▼────────┐
+      │ Is format valid?│
+      └───────┬────────┘
+          Yes  │  No
+               │
+         ┌─────▼─────┐
+         │ Invalid   │
+         │  Date     │
+         └─────┬─────┘
+               │
+             ┌─▼─┐
+             │End│
+             └───┘
+
+3. Robustness Testing
+
+Robustness testing checks how the system behaves when invalid or unexpected inputs are given.
+The goal is to ensure the application does not crash and provides proper error handling.
+
+Example:
+Entering -1 or 101 when the valid range is 1–100.
+
+Worst Case Testing
+
+Worst case testing checks the system using all possible combinations of boundary values for multiple inputs.
+It helps identify defects caused by interaction between inputs.
+
+Example:
+If there are 3 inputs and each has 5 boundary values, total test cases = 5³ = 125.
+
+Special Value Testing
+
+Special value testing focuses on values that commonly cause failures in software systems.
+
+Common special values:
+
+0
+
+NULL
+
+Empty string
+
+Maximum and minimum values
+
+Special characters (@, #, %)
+
+Example:
+Entering an empty string in a mandatory password field.
+
+
+
+3. Performance Test Case for a Mobile Application
+
+Test Case: App Launch Performance
+
+Field	Description
+Test Case ID	PERF_MOB_01
+Objective	Verify app launch time
+Precondition	App installed on device
+Test Steps	Launch the application
+Test Data	N/A
+Expected Result	App should launch within 3 seconds
+Actual Result	As observed
+Status	Pass / Fail
+
+
+
+Performance Testing (Mobile App) Flowchart (6 Boxes)
+ ┌─────────┐
+ │ Start   │
+ └────┬────┘
+      │
+ ┌────▼────┐
+ │ Launch  │
+ │ App     │
+ └────┬────┘
+      │
+ ┌────▼────┐
+ │ Measure │
+ │ Time    │
+ └────┬────┘
+      │
+ ┌────▼────┐
+ │ Meets   │
+ │ Criteria│
+ └──┬───┬──┘
+   Yes   No
+    │     │
+ ┌──▼──┐ ┌▼──────┐
+ │Pass │ │ Fail   │
+ └──┬──┘ └┬───────┘
+    │      │
+  ┌─▼─┐  ┌─▼─┐
+  │End│  │End│
+  └───┘  └───┘
+  
+
+5.Random Testing is a software testing technique where test cases are generated randomly without following predefined test scenarios.
+
+It is used to find unexpected defects by providing random inputs and performing random actions on the application.
+
+Example:
+Entering random numbers, text, and special characters in input fields of an application.
+
+
