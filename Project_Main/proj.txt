@@ -1,0 +1,63 @@
+https://chatgpt.com/share/69aa8e9c-8bd8-8011-830a-a60be0fd8dd8
+
+
+
+
+
+1️⃣ Data Management Module
+
+Dataset collection
+
+Data cleaning and preprocessing
+
+Feature engineering
+
+Database storage
+
+2️⃣ Risk Prediction Module
+
+Machine learning model training
+
+Disaster risk classification
+
+Model evaluation (accuracy, precision, recall)
+
+3️⃣ Geospatial Analysis Module
+
+Risk heatmap generation
+
+Region-wise vulnerability mapping
+
+Infrastructure overlay
+
+4️⃣ Resource Optimization Module
+
+Emergency resource allocation
+
+Shelter & hospital distribution planning
+
+Route optimization
+
+Linear programming techniques
+
+5️⃣ Real-Time Monitoring Dashboard
+
+Disaster trend visualization
+
+Risk analytics
+
+Performance metrics
+
+6️⃣ User & Administration Module
+
+User authentication
+
+Role-based access control
+
+Incident reporting
+
+
+
+
+
+
