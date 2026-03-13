@@ -11,3 +11,20 @@ Please provide:
 • Modules
 • Architecture
 • Implementation roadmap
+
+disaster-portal/
+│
+├── app.py                # Main Flask app
+├── templates/
+│   ├── index.html        # Dashboard / home page
+│   ├── predict.html      # Prediction form page
+│   └── map.html          # Interactive map page
+├── static/
+│   ├── css/
+│   └── js/
+├── models/
+│   └── disaster_model.pkl
+├── data/
+│   └── disaster_events.csv
+├── notebooks/            # Optional for testing ML
+└── requirements.txt
