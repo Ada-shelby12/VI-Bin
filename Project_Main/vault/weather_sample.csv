@@ -1,0 +1,6 @@
+location,date,temperature_c,rainfall_mm,humidity,wind_speed_kmh
+Assam,2022-06-10,29,180,85,22
+Odisha,2021-05-16,31,120,80,40
+Kathmandu,2015-04-25,24,5,55,12
+Dhaka,2020-07-06,30,150,88,18
+Rajasthan,2019-05-12,45,0,20,10
