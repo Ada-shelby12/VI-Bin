@@ -1,0 +1,13 @@
+
+
+
+
+
+Project Topic: AI-Driven Disaster Risk Prediction and Emergency Response System
+
+Please provide:
+• Updated datasets
+• Technology stack
+• Modules
+• Architecture
+• Implementation roadmap
