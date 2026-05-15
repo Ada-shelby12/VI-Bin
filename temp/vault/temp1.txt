@@ -1,0 +1,1002 @@
+MAD (MOBILE APPLICATION DEVELOPMENT) USING JAVA
+Program 1 – Hello World Application
+Files:
+	MainActivity.java
+	activity_main.xml
+
+
+•	MainActivity.java
+
+package com.aqua.program1;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Load the layout file
+        setContentView(R.layout.activity_main);
+    }
+}
+
+
+
+•	activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textSize="50dp"
+        android:textStyle="italic"
+        android:textColor="@color/white"
+        android:padding="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+Program 2 – Screen Orientation Message Application
+Files:
+	MainActivity.java
+	SecondActivity.java
+	activity_main.xml
+	activity_second.xml
+	AndroidManifest.xml
+•	MainActivity.java
+
+package com.aqua.program2;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.content.Intent;
+
+public class MainActivity extends AppCompatActivity {
+    Button button1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        button1 = findViewById(R.id.button1);
+        button1.setOnClickListener(this::onClick);
+    }
+
+    public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        startActivity(intent);
+    }
+}
+
+•	SecondActivity.java
+
+package com.aqua.program2;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class SecondActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+    }
+}
+
+•	activity_main.xml
+14:32 15-05-2026
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textOrientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This activity is portrait orientation"
+        android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Launch next activity"
+        app:layout_constraintTop_toBottomOf="@id/textOrientation"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+•	activity_second.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is landscape orientation"
+        android:textSize="22dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+•	AndroidManifest.xml
+
+ <?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aqua.program2">
+
+    <application
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SecondActivity"
+            android:screenOrientation="landscape"/>
+    </application>
+</manifest>
+
+Program 4. Login Window using UI Controls
+Files:
+	MainActivity.java
+	activity_main.xml
+
+•	MainActivity.java
+
+
+package com.aqua.program4;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+
+public class MainActivity extends AppCompatActivity {
+    Button b1, b2;
+    EditText ed1, ed2;
+    TextView tx1;
+    int counter = 3;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        b1 = findViewById(R.id.button);
+        b2 = findViewById(R.id.button2);
+        ed1 = findViewById(R.id.editText);
+        ed2 = findViewById(R.id.editText2);
+        tx1 = findViewById(R.id.textView3);
+        tx1.setVisibility(View.GONE);
+
+        b1.setOnClickListener(v -> {
+            if(ed1.getText().toString().equals("admin") &&
+               ed2.getText().toString().equals("admin")) {
+                Toast.makeText(getApplicationContext(),
+                        "Redirecting... Login Successful!!!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                tx1.setVisibility(View.VISIBLE);
+                tx1.setBackgroundColor(android.graphics.Color.RED);
+                counter--;
+                tx1.setText(Integer.toString(counter));
+                if(counter == 0) b1.setEnabled(false);
+            }
+        });
+
+        b2.setOnClickListener(v -> {
+            ed1.setText("");
+            ed2.setText("");
+        });
+    }
+}
+
+•	activity_main.xml
+14:33 15-05-2026
+
+<Button
+        android:id="@+id/button"
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/button"
+        android:layout_marginLeft="20dp"/>
+
+
+Program 6 – UI with All Views
+Files:
+	MainActivity.java
+	activity_main.xml
+	menu_example.xml
+
+•	MainActivity.java
+
+package com.aqua.program6;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_example, menu);
+        return true;
+    }
+}
+
+•	activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:text="Sample TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/button"
+        android:text="Click Me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+•	menu_example.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_settings"
+        android:title="Settings"/>
+</menu>	
+
+
+
+Program 7 – Application using Intents
+Files:
+	MainActivity.java
+	SecondActivity.java
+	activity_main.xml
+	activity_second.xml
+	AndroidManifest.xml
+
+•	MainActivity.java
+
+package com.aqua.program7;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.content.Intent;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+    Button button;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        button = findViewById(R.id.button);
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        });
+    }
+}
+
+•	SecondActivity.java
+package com.aqua.program7;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class SecondActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+    }
+}
+
+•	activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button"
+        android:text="Go to Second Activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+•	activity_second.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:text="Welcome to Second Activity"
+        android:textSize="22sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+•	AndroidManifest.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aqua.program7">
+
+    <application
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SecondActivity"/>
+    </application>
+</manifest>
+
+
+
+
+Program 8 – Application using Fragments
+Files:
+	MainActivity.java
+	FragmentOne.java
+	FragmentTwo.java
+	activity_main.xml
+	fragment_one.xml
+	fragment_two.xml
+	AndroidManifest.xml
+
+•	MainActivity.java
+
+package com.aqua.program8;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Load FragmentOne by default
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.fragment_container, new FragmentOne())
+            .commit();
+    }
+}
+
+•	FragmentOne.java
+
+package com.aqua.program8;
+
+import androidx.fragment.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class FragmentOne extends Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_one, container, false);
+    }
+}
+
+•	FragmentTwo.java
+
+package com.aqua.program8;
+
+import androidx.fragment.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class FragmentTwo extends Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_two, container, false);
+    }
+}
+
+•	activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+
+•	fragment_one.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Fragment One"
+        android:textSize="22sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+•	fragment_two.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Fragment Two"
+        android:textSize="22sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+•	AndroidManifest.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aqua.program8">
+
+    <application
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+	
+Program 9 – Application using RecyclerView
+Files:
+	MainActivity.java
+	RecyclerAdapter.java
+	activity_main.xml
+	item_layout.xml
+	AndroidManifest.xml
+
+•	MainActivity.java
+package com.aqua.program9;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        String[] items = {"Item 1", "Item 2", "Item 3", "Item 4"};
+        RecyclerAdapter adapter = new RecyclerAdapter(items);
+        recyclerView.setAdapter(adapter);
+    }
+}
+
+
+•	RecyclerAdapter.java
+package com.aqua.program9;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+    private String[] data;
+
+    public RecyclerAdapter(String[] data) {
+        this.data = data;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView text;
+        public ViewHolder(View itemView) {
+            super(itemView);
+            text = itemView.findViewById(R.id.text);
+        }
+    }
+
+    @Override
+    public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.item_layout, parent, false);
+        return new ViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
+        holder.text.setText(data[position]);
+    }
+
+    @Override
+    public int getItemCount() {
+        return data.length;
+    }
+}
+
+•	activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+
+
+•	item_layout.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+
+•	AndroidManifest.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aqua.program9">
+
+    <application
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+
+
+
+Program 11 – Application using Content Providers
+Files:
+	MainActivity.java
+	MyContentProvider.java
+	activity_main.xml
+	AndroidManifest.xml
+
+
+
+•	MainActivity.java
+
+
+package com.aqua.program11;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.*;
+import android.content.ContentValues;
+import android.net.Uri;
+import android.database.Cursor;
+
+public class MainActivity extends AppCompatActivity {
+    EditText editText;
+    TextView result;
+    Button insertBtn, queryBtn;
+    Uri CONTENT_URI = Uri.parse("content://com.aqua.program11.provider/data");
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        editText = findViewById(R.id.editText);
+        result = findViewById(R.id.textViewResult);
+        insertBtn = findViewById(R.id.buttonInsert);
+        queryBtn = findViewById(R.id.buttonQuery);
+
+        insertBtn.setOnClickListener(v -> {
+            ContentValues values = new ContentValues();
+            values.put("name", editText.getText().toString());
+            getContentResolver().insert(CONTENT_URI, values);
+            Toast.makeText(this, "Data Inserted", Toast.LENGTH_SHORT).show();
+        });
+
+        queryBtn.setOnClickListener(v -> {
+            Cursor cursor = getContentResolver().query(CONTENT_URI, null, null, null, null);
+            StringBuilder sb = new StringBuilder();
+            if (cursor != null) {
+                while(cursor.moveToNext()) {
+                    sb.append(cursor.getString(cursor.getColumnIndexOrThrow("name"))).append("\n");
+                }
+                cursor.close();
+            }
+            result.setText(sb.toString());
+        });
+    }
+}
+
+
+
+•	MyContentProvider.java
+
+
+package com.aqua.program11;
+
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
+import android.database.MatrixCursor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyContentProvider extends ContentProvider {
+    private List<String> data = new ArrayList<>();
+
+    @Override
+    public boolean onCreate() {
+        return true;
+    }
+
+    @Override
+    public Cursor query(Uri uri, String[] projection, String selection,
+                        String[] selectionArgs, String sortOrder) {
+        MatrixCursor cursor = new MatrixCursor(new String[]{"name"});
+        for (String item : data) {
+            cursor.addRow(new Object[]{item});
+        }
+        return cursor;
+    }
+
+    @Override
+    public Uri insert(Uri uri, ContentValues values) {
+        String name = values.getAsString("name");
+        data.add(name);
+        return uri;
+    }
+
+    @Override
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        return 0;
+    }
+
+    @Override
+    public int update(Uri uri, ContentValues values, String selection,
+                      String[] selectionArgs) {
+        return 0;
+    }
+
+    @Override
+    public String getType(Uri uri) {
+        return null;
+    }
+}
+
+•	activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editText"
+        android:hint="Enter Data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/buttonInsert"
+        android:text="Insert Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/buttonQuery"
+        android:text="Query Data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+
+
+•	AndroidManifest.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aqua.program11">
+
+    <application
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".MyContentProvider"
+            android:authorities="com.aqua.program11.provider"
+            android:exported="true"/>
+    </application>
+</manifest>
+
+
+
+Program 12 – Application using Notifications
+Files:
+	MainActivity.java
+	activity_main.xml
+	AndroidManifest.xml
+
+
+
+•	MainActivity.java
+package com.aqua.program12;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.Notification;
+import android.os.Build;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String CHANNEL_ID = "channel_id";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button notifyBtn = findViewById(R.id.buttonNotify);
+        notifyBtn.setOnClickListener(v -> showNotification());
+    }
+
+    private void showNotification() {
+        NotificationManager manager = getSystemService(NotificationManager.class);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Demo Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            manager.createNotificationChannel(channel);
+        }
+
+        Notification.Builder builder = new Notification.Builder(this, CHANNEL_ID)
+                .setContentTitle("Demo Notification")
+                .setContentText("This is a sample notification")
+                .setSmallIcon(android.R.drawable.ic_dialog_info);
+
+        manager.notify(1, builder.build());
+    }
+}
+
+ 
+•	activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonNotify"
+        android:text="Show Notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+
+•	AndroidManifest.xml
+
+14:32 15-05-2026   //Updated
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aqua.program12">
+
+    <application
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+
+Program 13 – Application using Multimedia (Audio/Video)
+Files:
+	MainActivity.java
+	activity_main.xml
+	AndroidManifest.xml
+
+
+
+•	MainActivity.java
+
+package com.aqua.program13;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.VideoView;
+import android.widget.Button;
+import android.widget.MediaController;
+
+public class MainActivity extends AppCompatActivity {
+    VideoView videoView;
+    Button playBtn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        videoView = findViewById(R.id.videoView);
+        playBtn = findViewById(R.id.playButton);
+
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+
+        playBtn.setOnClickListener(v -> {
+            // Ensure you have a file named sample_video.mp4 in res/raw
+            videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.sample_video);
+            videoView.start();
+        });
+    }
+}
+
+
+•	activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+    <Button
+        android:id="@+id/playButton"
+        android:text="Play Video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+
+•	AndroidManifest.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+    <Button
+        android:id="@+id/playButton"
+        android:text="Play Video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
